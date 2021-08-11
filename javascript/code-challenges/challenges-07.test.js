@@ -159,16 +159,11 @@ You may also use other string or array methods.
 const splitFoods = (recipe) => {
   let result = [];
   // Solution code here...
-  let newArray = [];
   recipe.ingredients.forEach(
     element => {
-      newArray.push(element.split(' '));
+      result.push(element.split(' ').slice(-1));
     }
   );
-  newArray.forEach(element => {
-    result.push(element.slice(-1));
-
-  });
   return result;
 };
 
@@ -213,6 +208,7 @@ For example:
 
 const removeEvenValues = (arr) => {
   // Solution code here...
+  return arr.filter(n => n % 2 !== 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -232,6 +228,13 @@ removeLastCharacters('Gregor', 9) returns ''
 
 const removeLastCharacters = (str, numberOfCharacters) => {
   // Solution code here...
+  let arr = Array.from(str);
+  if (arr.length <= numberOfCharacters && numberOfCharacters > 0) {
+    for (let i = 0; i < numberOfCharacters; i++) {
+      str.slice(0, -1);
+    }
+  }
+  return str;
 };
 
 
@@ -244,7 +247,11 @@ Write a function named totalSumCSV that, given a string of comma-separated value
 const totalSumCSV = (str) => {
   let total = 0;
   // Solution code here...
-  return total;
+  let strArr = str.split(',');
+  total = strArr.reduce(function(acc, value) {
+    return parseFloat(acc) + parseFloat(value);
+  });
+  return Number(total);
 };
 
 
@@ -258,6 +265,12 @@ For example, removeVowels('gregor') returns 'grgr'.
 
 const removeVowels = (str) => {
   // Solution code here...
+  let characterArray = str.split('');
+  return characterArray.map(character => {
+    if (/[aeiouAEIOU]/.test(character)) {
+      character = '';
+    } else { return character; }
+  }).join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -272,6 +285,15 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 
 const extractVowels = (str) => {
   // Solution code here...
+  let newArry = [];
+  let characterArray = str.split('');
+  let newString = characterArray.map(character => {
+    if (/[aeiouAEIOU]/.test(character)) {
+      newArry.push(character);
+      character = '';
+    } else { return character; }
+  }).join('');
+  return [newString, newArry.sort().join('')];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -371,14 +393,14 @@ xdescribe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should add up the numbers contained within the string', () => {
     expect(totalSumCSV('1,4,5,7,2')).toStrictEqual(19);
     expect(totalSumCSV('147')).toStrictEqual(147);
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);
@@ -387,7 +409,7 @@ xdescribe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should return the string without vowels', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);
