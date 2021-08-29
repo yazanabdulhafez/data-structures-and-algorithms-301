@@ -13,10 +13,7 @@ You can assume that neither firstName nor lastName will be blank
 ------------------------------------------------------------------------------------------------ */
 const toLastNames = (people) => {
   // Solution code here...
-  let newList = people.map(person => {
-    return `${person.firstName} ${person.lastName}`;
-
-  });
+  let newList = people.map(person => `${person.firstName} ${person.lastName}`);
   return newList;
 };
 
@@ -29,11 +26,13 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
-  let callBackFunction = (accumalate, value) => {
-    accumalate += value;
-    return accumalate;
-  };
-  return arr.reduce(callBackFunction, 0);
+  // let callBackFunction = (accumalate, value) => {
+  //   accumalate += value;
+  //   return accumalate;
+  // };
+  return arr.reduce((accumalate, value) => {
+    return accumalate += value;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -50,11 +49,13 @@ Write a function named addPurchases that, given an array of objects as input, us
 
 const addPurchases = (arr) => {
   // Solution code here...
-  let callBackFunction = (accumalate, value) => {
-    accumalate += value.purchasePrice;
-    return accumalate;
-  };
-  return arr.reduce(callBackFunction, 0);
+  // let callBackFunction = (accumalate, value) => {
+  //   accumalate += value.purchasePrice;
+  //   return accumalate;
+  // };
+  return arr.reduce((accumalate, value) => {
+    return accumalate += value.purchasePrice;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -65,17 +66,19 @@ Write a function named countNumberOfElements that, given an array as input, uses
 Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
-// const countNumberOfElements = (arr) => {
-//   // Solution code here...
-//   let theIndex = arr.reduce((accumalate, value, index) => { return index; });
-//   return theIndex;
-// };
 const countNumberOfElements = (arr) => {
-  let callBackFunction = (accumalate) => {
-    accumalate++;
-    return accumalate;
-  };
-  return arr.reduce(callBackFunction, 0);
+  //   // Solution code here...
+  //   let theIndex = arr.reduce((accumalate, value, index) => { return index; });
+  //   return theIndex;
+  // };
+  // const countNumberOfElements = (arr) => {
+  //   let callBackFunction = (accumalate) => {
+  //     accumalate++;
+  //     return accumalate;
+  //   };
+  return arr.reduce((accumalate) => {
+    return accumalate + 1;
+  }, 0);
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -84,55 +87,55 @@ Write a function named returnNames that, given the Star Wars data, below, uses r
 ------------------------------------------------------------------------------------------------ */
 
 let starWarsData = [{
-    name: 'Luke Skywalker',
-    height: '172',
-    mass: '77',
-    hair_color: 'blond',
-    skin_color: 'fair',
-    eye_color: 'blue',
-    birth_year: '19BBY',
-    gender: 'male',
-  },
-  {
-    name: 'C-3PO',
-    height: '167',
-    mass: '75',
-    hair_color: 'n/a',
-    skin_color: 'gold',
-    eye_color: 'yellow',
-    birth_year: '112BBY',
-    gender: 'n/a'
-  },
-  {
-    name: 'R2-D2',
-    height: '96',
-    mass: '32',
-    hair_color: 'n/a',
-    skin_color: 'white, blue',
-    eye_color: 'red',
-    birth_year: '33BBY',
-    gender: 'n/a'
-  },
-  {
-    name: 'Darth Vader',
-    height: '202',
-    mass: '136',
-    hair_color: 'none',
-    skin_color: 'white',
-    eye_color: 'yellow',
-    birth_year: '41.9BBY',
-    gender: 'male'
-  },
-  {
-    name: 'Leia Organa',
-    height: '150',
-    mass: '49',
-    hair_color: 'brown',
-    skin_color: 'light',
-    eye_color: 'brown',
-    birth_year: '19BBY',
-    gender: 'female'
-  }
+  name: 'Luke Skywalker',
+  height: '172',
+  mass: '77',
+  hair_color: 'blond',
+  skin_color: 'fair',
+  eye_color: 'blue',
+  birth_year: '19BBY',
+  gender: 'male',
+},
+{
+  name: 'C-3PO',
+  height: '167',
+  mass: '75',
+  hair_color: 'n/a',
+  skin_color: 'gold',
+  eye_color: 'yellow',
+  birth_year: '112BBY',
+  gender: 'n/a'
+},
+{
+  name: 'R2-D2',
+  height: '96',
+  mass: '32',
+  hair_color: 'n/a',
+  skin_color: 'white, blue',
+  eye_color: 'red',
+  birth_year: '33BBY',
+  gender: 'n/a'
+},
+{
+  name: 'Darth Vader',
+  height: '202',
+  mass: '136',
+  hair_color: 'none',
+  skin_color: 'white',
+  eye_color: 'yellow',
+  birth_year: '41.9BBY',
+  gender: 'male'
+},
+{
+  name: 'Leia Organa',
+  height: '150',
+  mass: '49',
+  hair_color: 'brown',
+  skin_color: 'light',
+  eye_color: 'brown',
+  birth_year: '19BBY',
+  gender: 'female'
+}
 ];
 
 const returnNames = (arr) => {
@@ -167,49 +170,60 @@ Write a function named countNumberOfChildren that, given the array of characters
 ------------------------------------------------------------------------------------------------ */
 
 const characters = [{
-    name: 'Eddard',
-    spouse: 'Catelyn',
-    children: ['Robb', 'Sansa', 'Arya', 'Bran', 'Rickon'],
-    house: 'Stark',
-  },
-  {
-    name: 'Jon',
-    spouse: 'Lysa',
-    children: ['Robin'],
-    house: 'Arryn',
-  },
-  {
-    name: 'Cersei',
-    spouse: 'Robert',
-    children: ['Joffrey', 'Myrcella', 'Tommen'],
-    house: 'Lannister',
-  },
-  {
-    name: 'Daenarys',
-    spouse: 'Khal Drogo',
-    children: ['Drogon', 'Rhaegal', 'Viserion'],
-    house: 'Targaryen',
-  },
-  {
-    name: 'Mace',
-    spouse: 'Alerie',
-    children: ['Margaery', 'Loras'],
-    house: 'Tyrell',
-  },
-  {
-    name: 'Sansa',
-    spouse: 'Tyrion',
-    house: 'Stark',
-  },
-  {
-    name: 'Jon',
-    spouse: null,
-    house: 'Snow',
-  },
+  name: 'Eddard',
+  spouse: 'Catelyn',
+  children: ['Robb', 'Sansa', 'Arya', 'Bran', 'Rickon'],
+  house: 'Stark',
+},
+{
+  name: 'Jon',
+  spouse: 'Lysa',
+  children: ['Robin'],
+  house: 'Arryn',
+},
+{
+  name: 'Cersei',
+  spouse: 'Robert',
+  children: ['Joffrey', 'Myrcella', 'Tommen'],
+  house: 'Lannister',
+},
+{
+  name: 'Daenarys',
+  spouse: 'Khal Drogo',
+  children: ['Drogon', 'Rhaegal', 'Viserion'],
+  house: 'Targaryen',
+},
+{
+  name: 'Mace',
+  spouse: 'Alerie',
+  children: ['Margaery', 'Loras'],
+  house: 'Tyrell',
+},
+{
+  name: 'Sansa',
+  spouse: 'Tyrion',
+  house: 'Stark',
+},
+{
+  name: 'Jon',
+  spouse: null,
+  house: 'Snow',
+},
 ];
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+  let totArray = [];
+  arr.reduce((accumalate, currant) => {
+    if (currant.children !== undefined) {
+      return currant.children.map(child => {
+        return totArray.push(child);
+      });
+
+    }
+  }, []);
+  return totArray.length;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -222,6 +236,11 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
+  let total = arr.reduce((accumalate, currant) => {
+    accumalate += currant;
+    return accumalate;
+  }, 0);
+  return total / arr.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -243,6 +262,13 @@ const isPrime = (value) => {
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+  return arr.reduce((acc, curr) => {
+    if (isPrime(curr)) {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -255,37 +281,48 @@ If the input array does not have a stat with that specific name, the function sh
 
 const snorlaxData = {
   stats: [{
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/6/',
-        name: 'speed',
-      },
-      effort: 5,
-      baseStat: 30,
+    stat: {
+      url: 'https://pokeapi.co/api/v2/stat/6/',
+      name: 'speed',
     },
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/5/',
-        name: 'special-defense',
-      },
-      effort: 2,
-      baseStat: 110,
+    effort: 5,
+    baseStat: 30,
+  },
+  {
+    stat: {
+      url: 'https://pokeapi.co/api/v2/stat/5/',
+      name: 'special-defense',
     },
-    {
-      stat: {
-        url: 'https://pokeapi.co/api/v2/stat/4/',
-        name: 'special-attack',
-      },
-      effort: 9,
-      baseStat: 65,
+    effort: 2,
+    baseStat: 110,
+  },
+  {
+    stat: {
+      url: 'https://pokeapi.co/api/v2/stat/4/',
+      name: 'special-attack',
     },
+    effort: 9,
+    baseStat: 65,
+  },
   ],
   name: 'snorlax',
   weight: 4600,
 };
 
-const extractStat = (statName, arr) => {
-  // Solution code here...
-};
+const extractStat = (statName, arr) =>
+  arr.reduce((a, b) => (a = statName === b.stat.name ? b : a),'');
+
+// const extractStat = (statName, arr) => {
+//   // Solution code here...
+//   let newArr = arr.reduce((acc, curr) => {
+//     if (curr.stat.name === acc.statName) {
+//       return curr;
+//     }else{
+//       return '';
+//     }
+//   }, '');
+//   return newArr;
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
@@ -355,25 +392,25 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the total number of children', () => {
     expect(countNumberOfChildren(characters)).toStrictEqual(14);
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return the average of the numbers in the array', () => {
     expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85])).toStrictEqual(64);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return a count of the prime numbers in the array', () => {
     expect(countPrimeNumbers([1, 2, 13, 64, 45, 56, 17, 8])).toStrictEqual(3);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should return any stats that match the input', () => {
     expect(extractStat('speed', snorlaxData.stats)).toStrictEqual({ stat: { url: 'https://pokeapi.co/api/v2/stat/6/', name: 'speed' }, effort: 5, baseStat: 30 });
   });
